@@ -2,9 +2,9 @@ FROM python:3.9
 
 # Install system dependencies for OpenCV
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+libgl1-mesa-glx \
+libglib2.0-0 \
+&& rm -rf /var/lib/apt/lists/*
 
 # Create and switch to non-root user
 RUN useradd -m -u 1000 user
@@ -22,12 +22,12 @@ COPY --chown=user . /app
 
 # Set Flask environment variables
 ENV FLASK_APP=app.py
-ENV FLASK_ENV=development
+ENV FLASK_ENV=production
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=5000
+ENV FLASK_RUN_PORT=7860
 
 # Expose port
-EXPOSE 5000
+EXPOSE 7860
 
 # Run Flask application with host and port specified
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=7860"]
