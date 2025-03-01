@@ -14,7 +14,7 @@ https://huggingface.co/spaces/piyush3/OcanPredict
 ## Project Structure
 
 Below is the current project structure:
-
+'''
 OcanPredict/
 ├── app.py                      # Main application entry point (e.g., using Flask)
 ├── best.pt                     # Pre-trained model weights for AI predictions
@@ -26,6 +26,7 @@ OcanPredict/
 │   └── style.css               # CSS file for static assets
 └── templates/
     └── index.html              # HTML template for the web interface
+'''
 
 ## Installation & Setup
 
