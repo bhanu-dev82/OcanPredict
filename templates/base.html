@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ request.cookies.get('lang', 'en') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>OcanPredict - AI Oral Health Screening</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="progress-sidebar">
+        <h3>{{ _('Progress') }}</h3>
+        <div class="steps-container">
+            <div class="step-indicator {% if active_step >= 0 %}active{% endif %} {% if active_step == 0 %}current{% endif %}">
+                <span class="step-number">1</span>{{ _('Language Selection') }}
+            </div>
+            <div class="step-indicator {% if active_step >= 1 %}active{% endif %} {% if active_step == 1 %}current{% endif %}">
+                <span class="step-number">2</span>{{ _('Patient Information') }}
+            </div>
+            <div class="step-indicator {% if active_step >= 2 %}active{% endif %} {% if active_step == 2 %}current{% endif %}">
+                <span class="step-number">3</span>{{ _('Disease Selection') }}
+            </div>
+            <div class="step-indicator {% if active_step >= 3 %}active{% endif %} {% if active_step == 3 %}current{% endif %}">
+                <span class="step-number">4</span>{{ _('Screening') }}
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <header class="flow-header">
+            <h1 class="app-title">OcanPredict</h1>
+            <p class="tagline">AI-powered Complete Oral Health Assessment</p>
+        </header>
+
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="logo-row">
+                    <span class="special-thanks">{{ _('Special Thanks To ') }}</span>
+                    <img src="{{ url_for('static', filename='logos/betic.jpg') }}" alt="BETIC Logo">
+                    <img src="{{ url_for('static', filename='logos/birac.png') }}" alt="BIRAC Logo">
+                    <img src="{{ url_for('static', filename='logos/college.png') }}" alt="College Logo">
+                    <img src="{{ url_for('static', filename='logos/sdk.png') }}" alt="SDK Logo">
+                </div>
+            </div>
+            <div class="footer-right">
+                <p>{{ _('Made') }} <span aria-hidden="true"></span> {{ _('by Bhanu Nagpure') }}</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

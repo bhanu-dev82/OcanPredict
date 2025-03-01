@@ -1,0 +1,32 @@
+<!-- templates/form.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <form class="patient-form" action="/form" method="POST">
+        <div class="form-group">
+            <label for="name">{{ _('Name') }}</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">{{ _('Age') }}</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">{{ _('Gender') }}</label>
+            <select id="gender" name="gender" required>
+                <option value="male">{{ _('Male') }}</option>
+                <option value="female">{{ _('Female') }}</option>
+                <option value="other">{{ _('Other') }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="village">{{ _('Village') }}</label>
+            <input type="text" id="village" name="village" required>
+        </div>
+        <div class="nav-buttons-forms">
+            <button class="button" type="submit">{{ _('Next') }}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

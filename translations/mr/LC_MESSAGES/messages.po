@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: OcanPredict\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Select Your Preferred Language"
+msgstr "तुमची पसंतीची भाषा निवडा"
+
+msgid "Patient Information"
+msgstr "रुग्णाची माहिती"
+
+msgid "Name"
+msgstr "नाव"
+
+msgid "Age"
+msgstr "वय"
+
+msgid "Gender"
+msgstr "लिंग"
+
+msgid "Village"
+msgstr "गाव"
+
+msgid "Select Diseases to Screen"
+msgstr "तपासणीसाठी रोग निवडा"
+
+msgid "Oral Submucous Fibrosis (OSMF)"
+msgstr "ओरल सबम्युकस फायब्रोसिस (ओएसएमएफ)"
+
+msgid "Calculus Classification"
+msgstr "कॅल्क्युलस वर्गीकरण"
+
+msgid "Calculus Instance Detection"
+msgstr "कॅल्क्युलस उदाहरण शोध"
+
+msgid "Gingivitis Detection"
+msgstr "जिंजिव्हायटिस शोध"
+
+msgid "Phenotype Analysis"
+msgstr "फेनोटाइप विश्लेषण"
+
+msgid "Upload Image"
+msgstr "प्रतिमा अपलोड करा"
+
+msgid "Capture Image"
+msgstr "प्रतिमा कॅप्चर करा"
+
+msgid "Analyze Upload"
+msgstr "अपलोड विश्लेषण"
+
+msgid "Analyze Capture"
+msgstr "कॅप्चर विश्लेषण"
+
+msgid "English"
+msgstr "इंग्रजी"
+
+msgid "Hindi"
+msgstr "हिंदी"
+
+msgid "Marathi"
+msgstr "मराठी"
+
+msgid "Start Screening"
+msgstr "स्क्रीनिंग सुरू करा"
+
+msgid "Back"
+msgstr "मागे जा"

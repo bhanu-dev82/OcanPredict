@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="welcome-screen">
+    <h2 class="lang_cent">{{ _('Select Your Preferred Language') }}</h2>
+    <div class="lang_cent_sub">
+        <button class="lang-button" onclick="location.href='/set_language/en'">{{ _('English') }}</button>
+        <button class="lang-button" onclick="location.href='/set_language/hi'">{{ _('Hindi') }}</button>
+        <button class="lang-button" onclick="location.href='/set_language/mr'">{{ _('Marathi') }}</button>
+    </div>
+</div>
+{% endblock %}

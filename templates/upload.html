@@ -1,0 +1,148 @@
+<!-- templates/upload.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="main-content">
+        <div class="left-panel">
+            <div class="upload-section">
+                <h2>Upload Image</h2>
+                <div class="file-upload">
+                    <input type="file" id="fileInput" accept="image/*">
+                    <label for="fileInput">Choose File</label>
+                </div>
+                <button id="uploadPredict" class="button" disabled>Analyze Upload</button>
+            </div>
+
+            <div class="separator">
+                <span>OR</span>
+            </div>
+
+            <div class="camera-section">
+                <h2>Capture Image</h2>
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <button id="capture" class="button">Capture Image</button>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <img id="preview" style="display: none;">
+                <button id="predict" class="button" disabled>Analyze Capture</button>
+            </div>
+            <div id="result" class="result-container"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const preview = document.getElementById('preview');
+    const captureBtn = document.getElementById('capture');
+    const predictBtn = document.getElementById('predict');
+    const result = document.getElementById('result');
+    const fileInput = document.getElementById('fileInput');
+    const uploadPredict = document.getElementById('uploadPredict');
+
+    // Access webcam
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(stream => {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(err => {
+            console.error('Error accessing camera:', err);
+        });
+
+    // File upload handling
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                uploadPredict.disabled = false;
+                predictBtn.disabled = true;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    captureBtn.addEventListener('click', () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        
+        preview.src = canvas.toDataURL('image/png');
+        preview.style.display = 'block';
+        predictBtn.disabled = false;
+        uploadPredict.disabled = true;
+        fileInput.value = '';
+    });
+    
+    async function predict(formData) {
+        try {
+            // Get selected diseases from cookies
+            const diseases = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('diseases='))
+                ?.split('=')[1]
+                ?.split(',') || [];
+
+            // Append diseases to formData
+            diseases.forEach(disease => {
+                formData.append('diseases', disease);
+            });
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.status === 'success') {
+                // Display results and annotated image
+                result.innerHTML = `
+                    <h3>Analysis Results</h3>
+                    <div class="image-preview">
+                        <img src="data:image/jpeg;base64,${data.annotated_image}" alt="Result" style="max-width: 100%;">
+                    </div>
+                    <div class="result-details">
+                        <pre>${JSON.stringify(data.results, null, 2)}</pre>
+                    </div>
+                    <button id="submit-form" class="button">{{ _('Submit Report') }}</button>
+                `;
+
+                // Handle form submission
+                document.getElementById('submit-form').addEventListener('click', function() {
+                    window.location.href = data.form_submission_url;
+                });
+            } else {
+                result.innerHTML = `Error: ${data.error}`;
+            }
+        } catch (error) {
+            result.innerHTML = `Error: ${error.message}`;
+            console.error('Prediction error:', error);
+        }
+    }
+
+    // Event listeners remain the same
+    predictBtn.addEventListener('click', async () => {
+        const blob = await (await fetch(preview.src)).blob();
+        const formData = new FormData();
+        formData.append('image', blob, 'capture.png');
+        await predict(formData);
+    });
+
+    uploadPredict.addEventListener('click', async () => {
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        await predict(formData);
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!-- templates/disease_selection.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="disease-selection">
+        <h2>Select Diseases to Screen</h2>
+        <form action="{{ url_for('handle_screening') }}" method="POST">
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="diseases" value="osmf">
+                        <span>Oral Submucous Fibrosis (OSMF)</span>
+                    </label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="diseases" value="calculus_class">
+                        <span>Calculus Classification</span>
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="diseases" value="calculus_inst">
+                        <span>Calculus Instance Detection</span>
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="diseases" value="gingivitis">
+                        <span>Gingivitis Detection</span>
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="diseases" value="phenotype">
+                        <span>Phenotype Analysis</span>
+                    </label>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="button" type="button" onclick="window.history.back()">{{ _('Back') }}</button>
+                    <button class="button" type="submit">{{ _('Start Screening') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
