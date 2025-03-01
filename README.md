@@ -1,11 +1,4 @@
----
-title: OcanPredict
-emoji: 💻
-colorFrom: red
-colorTo: blue
-sdk: docker
-pinned: false
-short_description: reserved# OcanPredict - Smart Web Based Application for Dental Disease Detection using Artificial Intelligence
+# OcanPredict - Smart Web Based Application for Dental Disease Detection using Artificial Intelligence
 
 ## Overview
 OcanPredict is a smart web-based application designed for early screening OSMF (Oral submucous fibrosis) which is a precancerous condition. It can also screen for various dental diseases using the power of Artificial Intelligence. It leverages state-of-the-art machine learning models and computer vision techniques to analyze real-time camera input and provide users with preliminary assessments of several oral health conditions. This tool aims to empower individuals with accessible and convenient preliminary screenings, promoting proactive dental care and early intervention. While not a replacement for professional diagnosis, OcanPredict can serve as an informative tool for raising awareness and encouraging timely consultations with dental professionals
@@ -123,7 +116,3 @@ npm run build
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 For more information or support, please open an issue in the GitHub repository.
-
----
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
